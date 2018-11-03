@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { SliderComponent } from './components/slider/slider.component';
 
+import { ImageService } from './services/image.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,9 @@ import { SliderComponent } from './components/slider/slider.component';
     MatGridListModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [
+    ImageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
