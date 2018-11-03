@@ -1,0 +1,13 @@
+<div class="img-gallery-container">
+  <h1>Image Gallery</h1>
+  <label class="upload-btn">
+    <input type='file' (change)="addImage($event)">
+    +
+  </label>
+
+  <mat-grid-list cols="5" rowHeight="1:1" gutterSize="5px">
+    <mat-grid-tile *ngFor="let imgName of imgKeys">
+      <img [src]="images[imgName][0]" [alt]="imgName" />
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

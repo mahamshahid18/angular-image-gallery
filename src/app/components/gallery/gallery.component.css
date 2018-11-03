@@ -1,0 +1,21 @@
+mat-grid-tile {
+  background: lightblue;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.upload-btn {
+  cursor: pointer;
+}
+
+h1 {
+  display: inline-block;
+}
+
+.img-gallery-container {
+  max-height: 100vh;
+  max-width: 100vw;
+  padding: 50px 50px;
+}
