@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ImageService } from '../../services/image.service';
+
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GalleryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: ImageService) { }
 
   images = null;
   imgKeys = null;
@@ -55,6 +57,10 @@ export class GalleryComponent implements OnInit {
   updateImageUI() {
     this.images = this.getStoredImages();
     this.imgKeys = Object.keys(this.images);
+  }
+
+  imgClick(name) {
+    this.service.imgClicked(name);
   }
 
 }

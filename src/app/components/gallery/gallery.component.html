@@ -7,7 +7,7 @@
 
   <mat-grid-list cols="5" rowHeight="1:1" gutterSize="5px">
     <mat-grid-tile *ngFor="let imgName of imgKeys">
-      <img [src]="images[imgName][0]" [alt]="imgName" />
+      <img [src]="images[imgName][0]" [alt]="imgName" (click)="imgClick(imgName)" />
     </mat-grid-tile>
   </mat-grid-list>
 </div>
