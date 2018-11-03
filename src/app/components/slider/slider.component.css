@@ -1,0 +1,35 @@
+.slider-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  background: rgba(255, 255, 255, 0.9);
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  z-index: 20;
+}
+
+.left-arrow, .right-arrow, .img-container {
+  padding: 0px 10px;
+  text-align: center;
+}
+
+.left-arrow, .right-arrow {
+  flex: 1;
+}
+
+.img-container {
+  flex: 2;
+}
+
+.img {
+  position: relative;
+}
+
+.overlap-btn {
+  position: absolute;
+  top: -15px;
+  right: 150px;
+  z-index: 100;
+}
