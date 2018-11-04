@@ -14,7 +14,7 @@ export class ImageService {
 
   imgClicked(imgFileName) {
     this.currentClickedName = imgFileName;
-    this.showImg = true;
+    this.toggleShowImg();
   }
 
   getImage(imgName) {
@@ -23,5 +23,9 @@ export class ImageService {
 
   getStoredImages() {
     return JSON.parse(localStorage.getItem('images'));
+  }
+
+  toggleShowImg() {
+    this.showImg = !this.showImg;
   }
 }

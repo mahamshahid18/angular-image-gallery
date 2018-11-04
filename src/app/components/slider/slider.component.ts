@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 import { ImageService } from '../../services/image.service';
 
@@ -13,16 +13,26 @@ export class SliderComponent implements OnInit {
   imgSrc: string;
   imgCreatedDate: string;
 
-  constructor(private imgServ: ImageService) {
+  constructor(private service: ImageService) {
     this.imgName = null;
     this.imgSrc = null;
-    this.imgCreatedDate = null;
   }
 
   ngOnInit() {
-    this.imgName = this.imgServ.currentClickedName;
-    this.imgSrc = this.imgServ.getImage(this.imgName)[0];
-    this.imgCreatedDate = this.imgServ.getImage(this.imgName)[1];
+    this.imgName = this.service.currentClickedName;
+    this.imgSrc = this.service.getImage(this.imgName)[0];
+  }
+
+  @HostListener('document:keyup', ['$event'])
+  detectEscapePress(event: KeyboardEvent) {
+    if (event.key.toLowerCase() === 'escape') {
+      this.closeSlider();
+    }
+
+  }
+
+  closeSlider() {
+    this.service.toggleShowImg();
   }
 
 }

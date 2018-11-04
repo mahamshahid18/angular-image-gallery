@@ -1,11 +1,21 @@
 <div class="slider-container">
+  <div class="cross-btn">
+    <button mat-icon-button
+      color="accent"
+      (click)="closeSlider()"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
   <div class="left-arrow">
     <button mat-mini-fab color="primary">&lt;</button>
   </div>
   <div class="img-container">
     <div class="img">
       <img [src]="imgSrc" [alt]="imgName">
-      <button mat-mini-fab class="overlap-btn">&lambda;</button>
+      <button mat-mini-fab class="delete-btn" color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
   </div>
   <div class="right-arrow">
