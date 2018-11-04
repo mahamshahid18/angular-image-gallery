@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ImageService } from '../../services/image.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-gallery',
@@ -59,8 +60,12 @@ export class GalleryComponent implements OnInit {
     this.imgKeys = Object.keys(this.images);
   }
 
-  imgClick(name) {
+  imgClick(name: string) {
     this.service.imgClicked(name);
+  }
+
+  getImgAddedDateString(imgName: string) {
+    return `Image added ${moment(this.images[imgName][1]).fromNow()}`;
   }
 
 }
