@@ -60,8 +60,8 @@ export class GalleryComponent implements OnInit {
     this.imgKeys = Object.keys(this.images);
   }
 
-  imgClick(name: string) {
-    this.service.imgClicked(name);
+  imgClick(name: string, index: number) {
+    this.service.imgClicked(name, index);
   }
 
   getImgAddedDateString(imgName: string) {

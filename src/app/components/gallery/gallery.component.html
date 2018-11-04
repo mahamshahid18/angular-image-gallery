@@ -6,9 +6,9 @@
   </label>
 
   <mat-grid-list cols="5" rowHeight="1:1" gutterSize="5px">
-    <mat-grid-tile *ngFor="let imgName of imgKeys"
+    <mat-grid-tile *ngFor="let imgName of imgKeys; let i = index"
       [matTooltip]="getImgAddedDateString(imgName)"
-      (click)="imgClick(imgName)"
+      (click)="imgClick(imgName, i)"
     >
       <img [src]="images[imgName][0]"
         [alt]="imgName"

@@ -11,28 +11,55 @@ export class SliderComponent implements OnInit {
 
   imgName: string;
   imgSrc: string;
-  imgCreatedDate: string;
+  imgIndex: number;
+  totalImages: number;
 
   constructor(private service: ImageService) {
     this.imgName = null;
     this.imgSrc = null;
+    this.imgIndex = null;
+    this.totalImages = null;
   }
 
   ngOnInit() {
+    const allImages = Object.keys(this.service.getStoredImages());
     this.imgName = this.service.currentClickedName;
-    this.imgSrc = this.service.getImage(this.imgName)[0];
+    this.imgIndex = this.service.currentImgIndex;
+    this.imgSrc = this.service.getImage(allImages[this.imgIndex])[0];
+    this.totalImages = allImages.length;
   }
 
   @HostListener('document:keyup', ['$event'])
   detectEscapePress(event: KeyboardEvent) {
     if (event.key.toLowerCase() === 'escape') {
       this.closeSlider();
+    } else if (event.key.toLowerCase() === 'arrowleft') {
+      this.viewPrevImage();
+    } else if (event.key.toLowerCase() === 'arrowright') {
+      this.viewNextImage();
     }
 
   }
 
   closeSlider() {
     this.service.toggleShowImg();
+  }
+
+  updateImageInView() {
+    if (this.imgIndex >= 0 && this.imgIndex < this.totalImages) {
+      const allImages = Object.keys(this.service.getStoredImages());
+      this.imgSrc = this.service.getImage(allImages[this.imgIndex])[0];
+    }
+  }
+
+  viewNextImage() {
+    this.imgIndex++;
+    this.updateImageInView();
+  }
+
+  viewPrevImage() {
+    this.imgIndex--;
+    this.updateImageInView();
   }
 
 }

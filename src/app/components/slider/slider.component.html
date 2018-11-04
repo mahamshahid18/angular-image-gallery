@@ -8,7 +8,13 @@
     </button>
   </div>
   <div class="left-arrow">
-    <button mat-mini-fab color="primary">&lt;</button>
+    <button mat-mini-fab
+      color="primary"
+      [disabled]="imgIndex - 1 < 0"
+      (click)="viewPrevImage()"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
   </div>
   <div class="img-container">
     <div class="img">
@@ -19,6 +25,12 @@
     </div>
   </div>
   <div class="right-arrow">
-    <button mat-mini-fab color="primary">&gt;</button>
+    <button mat-mini-fab
+      color="primary"
+      [disabled]="imgIndex + 1 >= totalImages"
+      (click)="viewNextImage()"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
   </div>
 </div>
