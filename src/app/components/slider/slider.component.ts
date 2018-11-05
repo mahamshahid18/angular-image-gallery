@@ -25,7 +25,7 @@ export class SliderComponent implements OnInit {
     const allImages = Object.keys(this.service.getStoredImages());
     this.imgName = this.service.currentClickedName;
     this.imgIndex = this.service.currentImgIndex;
-    this.imgSrc = this.service.getImage(allImages[this.imgIndex])[0];
+    this.imgSrc = this.service.getImage(this.imgIndex)[0];
     this.totalImages = allImages.length;
   }
 
@@ -47,8 +47,7 @@ export class SliderComponent implements OnInit {
 
   updateImageInView() {
     if (this.imgIndex >= 0 && this.imgIndex < this.totalImages) {
-      const allImages = Object.keys(this.service.getStoredImages());
-      this.imgSrc = this.service.getImage(allImages[this.imgIndex])[0];
+      this.imgSrc = this.service.getImage(this.imgIndex)[0];
     }
   }
 

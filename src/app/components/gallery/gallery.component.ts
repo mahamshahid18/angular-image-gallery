@@ -39,7 +39,7 @@ export class GalleryComponent implements OnInit {
   }
 
   storeImage(name, date, data) {
-    let storedImages = this.getStoredImages();
+    let storedImages = this.service.getStoredImages();
 
     if (storedImages === null || storedImages === undefined) {
       storedImages = {};
@@ -51,12 +51,8 @@ export class GalleryComponent implements OnInit {
     this.updateImageUI();
   }
 
-  getStoredImages() {
-    return JSON.parse(localStorage.getItem('images'));
-  }
-
   updateImageUI() {
-    this.images = this.getStoredImages();
+    this.images = this.service.getStoredImages();
     this.imgKeys = Object.keys(this.images);
   }
 

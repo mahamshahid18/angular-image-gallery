@@ -20,12 +20,21 @@ export class ImageService {
     this.toggleShowImg();
   }
 
-  getImage(imgName) {
-    return this.getStoredImages()[imgName];
+  getImage(index) {
+    const allImages = this.getStoredImages();
+    return allImages[Object.keys(allImages)[index]];
   }
 
   getStoredImages() {
     return JSON.parse(localStorage.getItem('images'));
+  }
+
+  getAllImages() {
+
+  }
+
+  deleteImage(index) {
+    // delete the image on index
   }
 
   toggleShowImg() {
