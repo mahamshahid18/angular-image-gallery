@@ -2,20 +2,29 @@ mat-grid-tile {
   background: lightblue;
 }
 
-input[type="file"] {
-  display: none;
-}
-
-.upload-btn {
-  cursor: pointer;
-}
-
-h1 {
-  display: inline-block;
-}
-
 .img-gallery-container {
   max-height: 100vh;
   max-width: 100vw;
   padding: 50px 50px;
+}
+
+.gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin-bottom: 5vh;
+}
+
+.upload-btn {
+  cursor: pointer;
+  align-self: center;
+  border-radius: 50%;
+  background: #3f51b5;
+  color: white;
+  padding: 10px 10px;
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+}
+
+input[type="file"] {
+  display: none;
 }
