@@ -18,10 +18,10 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit() {}
 
-  addImage(event) {
-    let fileData = null;
-    let fileName = null;
-    let fileCreatedAtDate = null;
+  addImage(event): void {
+    let fileData: String = null;
+    let fileName: String = null;
+    let fileCreatedAtDate: Date = null;
 
     if (event.target.files && event.target.files[0]) {
       fileName = event.target.files[0].name;
@@ -38,17 +38,17 @@ export class GalleryComponent implements OnInit {
     }
   }
 
-  imgClick(name: string, index: number) {
+  imgClick(name: string, index: number): void {
     this.service.imgClicked(name, index);
   }
 
-  getImgAddedDateString(addedDate: string) {
+  getImgAddedDateString(addedDate: string): string {
     return `Image added ${moment(addedDate).fromNow()}`;
   }
 
   // to make grid of images responsive according to screen size
   @HostListener('window:resize', ['$event'])
-  updateColNum(event) {
+  updateColNum(event): void {
     if (window.innerWidth < 768) {
       // for mobile devices
       this.numCols = 1;
