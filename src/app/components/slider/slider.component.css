@@ -1,7 +1,6 @@
 .slider-container {
   height: 100vh;
   width: 100vw;
-  overflow-x: hidden !important;
   display: flex;
   background: rgba(255, 255, 255, 0.9);
   justify-content: space-around;
@@ -29,15 +28,15 @@
 }
 
 img {
-  width: 50vw;
-  max-height: 70vh;
+  width: 40vw;
+  max-height: 80vh;
   border: 1px solid #3f51b5;
 }
 
 .delete-btn {
   position: absolute;
   top: -20px;
-  right: -20px;
+  right: 2vw;
   z-index: 100;
 }
 
@@ -46,4 +45,10 @@ img {
   top: 0px;
   right: 10px;
   padding: 20px 20px;
+}
+
+@media (max-width: 500px) {
+  .delete-btn {
+    right: -2vw;
+  }
 }

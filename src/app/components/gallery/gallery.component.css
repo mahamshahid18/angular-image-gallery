@@ -1,5 +1,6 @@
 mat-grid-tile {
-  background: lightblue;
+  background: #fafafa;
+  cursor: zoom-in;
 }
 
 .img-gallery-container {

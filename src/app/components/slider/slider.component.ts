@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 
 import { ImageService } from '../../services/image.service';
 
@@ -7,7 +7,7 @@ import { ImageService } from '../../services/image.service';
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.css']
 })
-export class SliderComponent implements OnInit {
+export class SliderComponent implements OnInit, OnDestroy {
 
   imgSrc: String;
   imgIndex: number;
@@ -19,10 +19,17 @@ export class SliderComponent implements OnInit {
     this.totalImages = null;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.imgIndex = this.service.currentImgIndex;
     this.imgSrc = this.service.getImage(this.imgIndex).src;
     this.totalImages = this.service.getStoredImages().length;
+    // hide scrolling in this component
+    document.body.style.overflowY = 'hidden';
+  }
+
+  ngOnDestroy(): void {
+    // setting back to default
+    document.body.style.overflowY = 'auto';
   }
 
   @HostListener('document:keyup', ['$event'])
