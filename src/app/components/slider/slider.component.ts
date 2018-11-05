@@ -37,7 +37,7 @@ export class SliderComponent implements OnInit {
 
   }
 
-  deleteImg() {
+  deleteImg(): void {
     this.service.deleteImage(this.imgIndex);
 
     if (this.imgIndex === this.totalImages - 1) {
@@ -50,21 +50,21 @@ export class SliderComponent implements OnInit {
     this.updateImageInView();
   }
 
-  closeSlider() {
+  closeSlider(): void {
     this.service.toggleShowImg();
   }
 
-  viewNextImage() {
+  viewNextImage(): void {
     this.imgIndex++;
     this.updateImageInView();
   }
 
-  viewPrevImage() {
+  viewPrevImage(): void {
     this.imgIndex--;
     this.updateImageInView();
   }
 
-  updateImageInView() {
+  updateImageInView(): void {
     if (this.imgIndex >= 0 && this.imgIndex < this.totalImages) {
       // update the image currently in view
       // according to changed index
