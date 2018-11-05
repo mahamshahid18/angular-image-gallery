@@ -8,7 +8,7 @@ import { ImageService } from './services/image.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'Image Gallery';
 
   constructor(private service: ImageService) {  }
 }
