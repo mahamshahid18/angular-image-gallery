@@ -24,25 +24,7 @@ export class ImageService {
     this.init();
   }
 
-  imgClicked(imgFileName, imgIndex?) {
-    this.currentClickedName = imgFileName;
-    this.currentImgIndex = imgIndex;
-    this.toggleShowImg();
-  }
-
-  getImage(index) {
-    return this.storedImages[index];
-  }
-
-  getStoredImages() {
-    const imagesArray = JSON.parse(localStorage.getItem('images'));
-    if (imagesArray === undefined || imagesArray === null) {
-      return [];
-    }
-    return imagesArray;
-  }
-
-  init() {
+  init(): void {
     this.storedImages = this.getStoredImages();
 
     this.images.next(this.storedImages);
@@ -52,14 +34,26 @@ export class ImageService {
     this.openSlider$ = this.sliderState.asObservable();
   }
 
-  deleteImage(index) {
+  getStoredImages(): ImageObject[] {
+    const imagesArray: ImageObject[] = JSON.parse(localStorage.getItem('images'));
+    if (imagesArray === undefined || imagesArray === null) {
+      return [];
+    }
+    return imagesArray;
+  }
+
+  getImage(index): ImageObject {
+    return this.storedImages[index];
+  }
+
+  deleteImage(index): void {
     // delete the image on index
     this.storedImages.splice(index, 1);
     this.images.next(this.storedImages);
     localStorage.setItem('images', JSON.stringify(this.storedImages));
   }
 
-  addImage(name, date, data) {
+  addImage(name, date, data): void {
     const newImage: ImageObject = {
       name,
       src: data,
@@ -72,7 +66,13 @@ export class ImageService {
     this.images.next(this.storedImages);
   }
 
-  toggleShowImg() {
+  imgClicked(imgFileName, imgIndex?): void {
+    this.currentClickedName = imgFileName;
+    this.currentImgIndex = imgIndex;
+    this.toggleShowImg();
+  }
+
+  toggleShowImg(): void {
     this.showImg = !this.showImg;
     this.sliderState.next(this.showImg);
   }
