@@ -10,14 +10,9 @@ import * as moment from 'moment';
 })
 export class GalleryComponent implements OnInit {
 
-  constructor(private service: ImageService) { }
+  constructor(private service: ImageService) {}
 
-  images = null;
-  imgKeys = null;
-
-  ngOnInit() {
-    this.updateImageUI();
-  }
+  ngOnInit() {}
 
   addImage(event) {
     let fileData = null;
@@ -33,35 +28,17 @@ export class GalleryComponent implements OnInit {
 
       reader.onload = (data: any) => { // called once readAsDataURL is completed
         fileData = data.target.result;
-        this.storeImage(fileName, fileCreatedAtDate, fileData);
+        this.service.addImage(fileName, fileCreatedAtDate, fileData);
       };
     }
-  }
-
-  storeImage(name, date, data) {
-    let storedImages = this.service.getStoredImages();
-
-    if (storedImages === null || storedImages === undefined) {
-      storedImages = {};
-    }
-
-    storedImages[name] = [data, date];
-    localStorage.setItem('images', JSON.stringify(storedImages));
-
-    this.updateImageUI();
-  }
-
-  updateImageUI() {
-    this.images = this.service.getStoredImages();
-    this.imgKeys = Object.keys(this.images);
   }
 
   imgClick(name: string, index: number) {
     this.service.imgClicked(name, index);
   }
 
-  getImgAddedDateString(imgName: string) {
-    return `Image added ${moment(this.images[imgName][1]).fromNow()}`;
+  getImgAddedDateString(addedDate: string) {
+    return `Image added ${moment(addedDate).fromNow()}`;
   }
 
 }

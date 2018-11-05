@@ -19,7 +19,11 @@
   <div class="img-container">
     <div class="img">
       <img [src]="imgSrc" [alt]="imgName">
-      <button mat-mini-fab class="delete-btn" color="warn">
+      <button mat-mini-fab
+        class="delete-btn"
+        color="warn"
+        (click)="deleteImg()"
+      >
         <mat-icon>delete</mat-icon>
       </button>
     </div>

@@ -9,24 +9,20 @@ import { ImageService } from '../../services/image.service';
 })
 export class SliderComponent implements OnInit {
 
-  imgName: string;
-  imgSrc: string;
+  imgSrc: String;
   imgIndex: number;
   totalImages: number;
 
   constructor(private service: ImageService) {
-    this.imgName = null;
     this.imgSrc = null;
     this.imgIndex = null;
     this.totalImages = null;
   }
 
   ngOnInit() {
-    const allImages = Object.keys(this.service.getStoredImages());
-    this.imgName = this.service.currentClickedName;
     this.imgIndex = this.service.currentImgIndex;
-    this.imgSrc = this.service.getImage(this.imgIndex)[0];
-    this.totalImages = allImages.length;
+    this.imgSrc = this.service.getImage(this.imgIndex).src;
+    this.totalImages = this.service.getStoredImages().length;
   }
 
   @HostListener('document:keyup', ['$event'])
@@ -47,7 +43,7 @@ export class SliderComponent implements OnInit {
 
   updateImageInView() {
     if (this.imgIndex >= 0 && this.imgIndex < this.totalImages) {
-      this.imgSrc = this.service.getImage(this.imgIndex)[0];
+      this.imgSrc = this.service.getImage(this.imgIndex).src;
     }
   }
 
@@ -58,6 +54,17 @@ export class SliderComponent implements OnInit {
 
   viewPrevImage() {
     this.imgIndex--;
+    this.updateImageInView();
+  }
+
+  deleteImg() {
+    this.service.deleteImage(this.imgIndex);
+
+    if (this.imgIndex === this.totalImages - 1) {
+      this.imgIndex--;
+    }
+
+    this.totalImages--;
     this.updateImageInView();
   }
 
