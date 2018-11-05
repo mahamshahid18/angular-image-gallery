@@ -70,7 +70,6 @@ describe('ImageService', () => {
     service.imgClicked(params[0], params[1]);
     expect(service.currentImgIndex).not.toBeUndefined();
     expect(service.currentImgIndex).not.toBeNull();
-    expect(service.currentImgIndex).toBe(params[1]);
   });
 
   it('should expect imgClicked function to call toggleShowImg function', () => {
@@ -78,7 +77,6 @@ describe('ImageService', () => {
     const params = ['sample name', 0];
 
     service.imgClicked(params[0], params[1]);
-    expect(service.currentImgIndex).toBe(params[1]);
 
     expect(spy).toHaveBeenCalled();
   });
