@@ -10,16 +10,18 @@ export class ImageService {
   public showImg: Boolean;
   public currentClickedName: string;
   public currentImgIndex: number;
-  private images: ReplaySubject<ImageObject[]> = new ReplaySubject<ImageObject[]>();
+  public openSlider$: Observable<Boolean>;
   public listOfImages$: Observable<ImageObject[]>;
   private storedImages: ImageObject[] = [];
+  private images: ReplaySubject<ImageObject[]> = new ReplaySubject<ImageObject[]>();
+  private sliderState: ReplaySubject<Boolean> = new ReplaySubject<Boolean>();
 
   constructor() {
     this.showImg = false;
     this.currentClickedName = null;
     this.currentImgIndex = null;
 
-    this.initImages();
+    this.init();
   }
 
   imgClicked(imgFileName, imgIndex?) {
@@ -40,10 +42,14 @@ export class ImageService {
     return imagesArray;
   }
 
-  initImages() {
+  init() {
     this.storedImages = this.getStoredImages();
+
     this.images.next(this.storedImages);
     this.listOfImages$ = this.images.asObservable();
+
+    this.sliderState.next(this.showImg);
+    this.openSlider$ = this.sliderState.asObservable();
   }
 
   deleteImage(index) {
@@ -68,5 +74,6 @@ export class ImageService {
 
   toggleShowImg() {
     this.showImg = !this.showImg;
+    this.sliderState.next(this.showImg);
   }
 }

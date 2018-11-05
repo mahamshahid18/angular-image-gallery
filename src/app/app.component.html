@@ -1,5 +1,3 @@
 <app-gallery></app-gallery>
 
-<div *ngIf="service.showImg">
-  <app-slider></app-slider>
-</div>
+<app-slider *ngIf="service.openSlider$ | async"></app-slider>

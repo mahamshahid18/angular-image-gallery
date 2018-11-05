@@ -37,14 +37,21 @@ export class SliderComponent implements OnInit {
 
   }
 
-  closeSlider() {
-    this.service.toggleShowImg();
+  deleteImg() {
+    this.service.deleteImage(this.imgIndex);
+
+    if (this.imgIndex === this.totalImages - 1) {
+      // if last image is deleted, update the index
+      // to stop it from going out of bounds
+      this.imgIndex--;
+    }
+
+    this.totalImages--;
+    this.updateImageInView();
   }
 
-  updateImageInView() {
-    if (this.imgIndex >= 0 && this.imgIndex < this.totalImages) {
-      this.imgSrc = this.service.getImage(this.imgIndex).src;
-    }
+  closeSlider() {
+    this.service.toggleShowImg();
   }
 
   viewNextImage() {
@@ -57,15 +64,12 @@ export class SliderComponent implements OnInit {
     this.updateImageInView();
   }
 
-  deleteImg() {
-    this.service.deleteImage(this.imgIndex);
-
-    if (this.imgIndex === this.totalImages - 1) {
-      this.imgIndex--;
+  updateImageInView() {
+    if (this.imgIndex >= 0 && this.imgIndex < this.totalImages) {
+      // update the image currently in view
+      // according to changed index
+      this.imgSrc = this.service.getImage(this.imgIndex).src;
     }
-
-    this.totalImages--;
-    this.updateImageInView();
   }
 
 }
