@@ -7,7 +7,7 @@
     </label>
   </div>
 
-  <mat-grid-list cols="5" rowHeight="1:1" gutterSize="5px">
+  <mat-grid-list [cols]="numCols" rowHeight="1:1" gutterSize="5px">
     <mat-grid-tile *ngFor="let img of service.listOfImages$ | async; let i = index"
       [matTooltip]="getImgAddedDateString(img.addedOn)"
       (click)="imgClick(img.name, i)"

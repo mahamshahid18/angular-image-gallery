@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 import { ImageService } from '../../services/image.service';
 import * as moment from 'moment';
@@ -10,7 +10,11 @@ import * as moment from 'moment';
 })
 export class GalleryComponent implements OnInit {
 
-  constructor(private service: ImageService) {}
+  numCols: number;
+
+  constructor(private service: ImageService) {
+    this.numCols = 5;
+  }
 
   ngOnInit() {}
 
@@ -26,7 +30,8 @@ export class GalleryComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (data: any) => { // called once readAsDataURL is completed
+      reader.onload = (data: any) => {
+        // called when file data has been read
         fileData = data.target.result;
         this.service.addImage(fileName, fileCreatedAtDate, fileData);
       };
@@ -39,6 +44,21 @@ export class GalleryComponent implements OnInit {
 
   getImgAddedDateString(addedDate: string) {
     return `Image added ${moment(addedDate).fromNow()}`;
+  }
+
+  // to make grid of images responsive according to screen size
+  @HostListener('window:resize', ['$event'])
+  updateColNum(event) {
+    if (window.innerWidth < 768) {
+      // for mobile devices
+      this.numCols = 1;
+    } else if (window.innerWidth >= 768 && window.innerWidth < 992) {
+      // for tablets
+      this.numCols = 2;
+    } else {
+      // for laptops, bigger screens
+      this.numCols = 5;
+    }
   }
 
 }
