@@ -66,13 +66,15 @@ export class ImageService {
     this.images.next(this.storedImages);
   }
 
-  imgClicked(imgFileName, imgIndex?): void {
+  imgClicked(imgFileName, imgIndex): void {
+    // maintaining state: which image was clicked
     this.currentClickedName = imgFileName;
     this.currentImgIndex = imgIndex;
     this.toggleShowImg();
   }
 
   toggleShowImg(): void {
+    // maintaining state: does slider component need to be called
     this.showImg = !this.showImg;
     this.sliderState.next(this.showImg);
   }

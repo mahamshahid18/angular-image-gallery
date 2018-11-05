@@ -23,7 +23,8 @@ export class SliderComponent implements OnInit, OnDestroy {
     this.imgIndex = this.service.currentImgIndex;
     this.imgSrc = this.service.getImage(this.imgIndex).src;
     this.totalImages = this.service.getStoredImages().length;
-    // hide scrolling in this component
+    // scroll to top, then hide scrolling in this component
+    window.scrollTo(0, 0);
     document.body.style.overflowY = 'hidden';
   }
 

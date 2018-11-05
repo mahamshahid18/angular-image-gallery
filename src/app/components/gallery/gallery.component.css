@@ -9,6 +9,8 @@ mat-grid-tile {
   padding: 50px 50px;
 }
 
+/* flex parent */
+/* header section containing title, image upload button */
 .gallery-header {
   display: flex;
   justify-content: space-between;
@@ -16,6 +18,8 @@ mat-grid-tile {
   margin-bottom: 5vh;
 }
 
+/* flex child */
+/* image upload button */
 .upload-btn {
   cursor: pointer;
   align-self: center;

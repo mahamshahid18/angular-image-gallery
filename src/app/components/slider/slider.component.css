@@ -1,3 +1,4 @@
+/* flex parent */
 .slider-container {
   height: 100vh;
   width: 100vw;
@@ -10,6 +11,7 @@
   z-index: 20;
 }
 
+/* flex children */
 .left-arrow, .right-arrow, .img-container {
   padding: 0px 10px;
   text-align: center;
@@ -33,6 +35,7 @@ img {
   border: 1px solid #3f51b5;
 }
 
+/* image delete button */
 .delete-btn {
   position: absolute;
   top: -20px;
@@ -40,6 +43,7 @@ img {
   z-index: 100;
 }
 
+/* slider close button */
 .cross-btn {
   position: fixed;
   top: 0px;
